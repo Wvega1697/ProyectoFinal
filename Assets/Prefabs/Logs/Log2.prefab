@@ -44,20 +44,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df005ccc52e8daa42b947d37b65a6524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!64 &7438159051657049761
-MeshCollider:
+  speed: 10
+--- !u!65 &7074887450610010347
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7780196979485887479}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6823040044805098993, guid: 06d04927338e80f4c98d1d161e1b0dc1, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.52, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &7438159051657049766
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -124,6 +124,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 06d04927338e80f4c98d1d161e1b0dc1, type: 3}
       propertyPath: m_Name
       value: Log2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 06d04927338e80f4c98d1d161e1b0dc1, type: 3}
+      propertyPath: m_TagString
+      value: DangerousDown
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06d04927338e80f4c98d1d161e1b0dc1, type: 3}

@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!136 &4499132331067929710
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3652780854096841008}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.39
+  m_Height: 3.37
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.22, z: 0}
 --- !u!1 &4499132331559477337
 GameObject:
   m_ObjectHideFlags: 0
@@ -25,8 +39,7 @@ Transform:
   m_GameObject: {fileID: 4499132331559477337}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4177819253966771082}
   m_Father: {fileID: 0}
@@ -99,6 +112,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree19
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 06a4691cef233e24faa8555d813d118b, type: 3}
+      propertyPath: m_TagString
+      value: Decoration
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06a4691cef233e24faa8555d813d118b, type: 3}
 --- !u!1 &3652780854096841008 stripped
@@ -106,20 +123,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 06a4691cef233e24faa8555d813d118b, type: 3}
   m_PrefabInstance: {fileID: 4499132331067929697}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &4499132331067929710
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3652780854096841008}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.39
-  m_Height: 3.37
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.22, z: 0}
 --- !u!4 &4177819253966771082 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 06a4691cef233e24faa8555d813d118b, type: 3}

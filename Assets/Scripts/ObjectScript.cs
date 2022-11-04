@@ -1,18 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //Private
+    GameObject player;
+    GameObject[] players;
+    Animator animator;
+    Vector3 direction;
+    //Public
+    public float speed = 10f;
+
     void Start()
     {
-        
+        players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject playerI in players)
+        {
+            player = playerI;
+        }
+        animator = player.GetComponent<Animator>();
+        direction = new Vector3(0, 0, -1f);
+        speed = 10f;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (animator.GetBool("Live"))
+        {
+            transform.position += direction * speed * Time.deltaTime;
+        }
     }
 }

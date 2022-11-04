@@ -22,15 +22,14 @@ public class WolfScript : MonoBehaviour
 
     void Update()
     {
-        JumpLogic();
-        if (jump) MoveLogic();
-        if(Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
+        if (animator.GetBool("Live"))
         {
-            animator.SetBool("Die", true);
+            JumpLogic();
+            if (jump) MoveLogic();
         }
         if(Input.GetKeyDown(KeyCode.R))
         {
-            animator.SetBool("Die", false);
+            animator.SetBool("Live", true);
         }
     }
 
@@ -58,7 +57,6 @@ public class WolfScript : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             {
-                Debug.Log("Left");
                 pos -= 1;
                 dodge = true;
                 animator.SetBool("DodgeLeft", dodge);
@@ -70,7 +68,6 @@ public class WolfScript : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
             {
-                Debug.Log("Right");
                 pos += 1;
                 dodge = true;
                 animator.SetBool("DodgeRight", dodge);
@@ -121,4 +118,18 @@ public class WolfScript : MonoBehaviour
         }
     }
     
+    void OnTriggerEnter(Collider col) {
+        if(col.transform.gameObject.CompareTag("DangerousAll"))
+        {
+            animator.SetBool("Live", false);
+        }
+        if(col.transform.gameObject.CompareTag("DangerousDown") && jump)
+        {
+            animator.SetBool("Live", false);
+        }
+        if(col.transform.gameObject.CompareTag("DangerousUp") && !jump)
+        {
+            animator.SetBool("Live", false);
+        }
+    }
 }
