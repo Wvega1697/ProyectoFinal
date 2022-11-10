@@ -13,6 +13,7 @@ public class WolfScript : MonoBehaviour
     public GameObject _magic;
     public int pos;
     public Vector3 _position  = new Vector3(-0.1f, 0.61f, -1.5f);
+    public AudioSource audioBark, audioDoubleBark, music, audioDie;
 
     void Start()
     {
@@ -30,6 +31,9 @@ public class WolfScript : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.R))
         {
             animator.SetBool("Live", true);
+            music.Play();
+            audioDoubleBark.Play();
+            audioDie.Stop();
         }
     }
 
@@ -61,6 +65,7 @@ public class WolfScript : MonoBehaviour
                 dodge = true;
                 animator.SetBool("DodgeLeft", dodge);
                 dodgeTimer = dodgeRestartTimer;
+                audioBark.Play();
             }
         }
 
@@ -72,6 +77,7 @@ public class WolfScript : MonoBehaviour
                 dodge = true;
                 animator.SetBool("DodgeRight", dodge);
                 dodgeTimer = dodgeRestartTimer;
+                audioBark.Play();
             }
         }
 
@@ -107,6 +113,7 @@ public class WolfScript : MonoBehaviour
             {
                 jumpTimer = jumpRestartTimer;
                 animator.SetBool("Jump", jump);
+                audioDoubleBark.Play();
             }
         }
         else 
@@ -119,17 +126,12 @@ public class WolfScript : MonoBehaviour
     }
     
     void OnTriggerEnter(Collider col) {
-        if(col.transform.gameObject.CompareTag("DangerousAll"))
+        
+        if((col.transform.gameObject.CompareTag("DangerousAll")) || (col.transform.gameObject.CompareTag("DangerousDown") && jump) || (col.transform.gameObject.CompareTag("DangerousUp") && !jump))
         {
-            animator.SetBool("Live", false);
-        }
-        if(col.transform.gameObject.CompareTag("DangerousDown") && jump)
-        {
-            animator.SetBool("Live", false);
-        }
-        if(col.transform.gameObject.CompareTag("DangerousUp") && !jump)
-        {
-            animator.SetBool("Live", false);
+           animator.SetBool("Live", false);
+           music.Stop();
+           audioDie.Play();
         }
     }
 }

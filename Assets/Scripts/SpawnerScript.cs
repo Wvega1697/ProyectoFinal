@@ -8,7 +8,7 @@ public class SpawnerScript : MonoBehaviour
     GameObject[] players;
     Animator animator;
     float timer, spawnTimer = 3f;
-    float decorationTimer, decorationSpawnTimer = 1f;
+    float decorationTimer, decorationSpawnTimer = 0.5f;
     float floorDecorationTimer, floorDecorationSpawnTimer = 0.25f;
     //Public
     public GameObject log, rock1, rock2, rock3, rock4, rock5, rock6, rock7;
@@ -45,13 +45,12 @@ public class SpawnerScript : MonoBehaviour
             decorationTimer -= Time.deltaTime;
             if (decorationTimer <= 0)
             {
-                SpawnDecoration();
-                SpawnDecoration();
-                decorationTimer = decorationSpawnTimer;
+                //decorationTimer = decorationSpawnTimer;
             }
             floorDecorationTimer -= Time.deltaTime;
             if (floorDecorationTimer <= 0)
             {
+                SpawnDecoration();
                 SpawnFloorDecoration();
                 floorDecorationTimer = floorDecorationSpawnTimer;
             }
