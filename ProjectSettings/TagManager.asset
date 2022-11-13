@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Decoration
+  - Spawner
+  - DangerousDown
+  - DangerousUp
+  - DangerousAll
+  - Dangerous
   layers:
   - Default
   - TransparentFX
