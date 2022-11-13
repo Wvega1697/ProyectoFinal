@@ -7,9 +7,8 @@ public class SpawnerScript : MonoBehaviour
     GameObject player;
     GameObject[] players;
     Animator animator;
-    float timer, spawnTimer = 3f;
-    float decorationTimer, decorationSpawnTimer = 0.5f;
-    float floorDecorationTimer, floorDecorationSpawnTimer = 0.25f;
+    float timer, spawnTimer = 2f;
+    float decorationTimer, decorationSpawnTimer = 0.25f;
     //Public
     public GameObject log, rock1, rock2, rock3, rock4, rock5, rock6, rock7;
     public GameObject tree1, tree2, tree3, tree4, tree5, tree6;
@@ -29,7 +28,7 @@ public class SpawnerScript : MonoBehaviour
         animator = player.GetComponent<Animator>();
         timer = spawnTimer;
         decorationTimer = decorationSpawnTimer;
-        floorDecorationTimer = floorDecorationSpawnTimer;
+        decorationTimer = decorationSpawnTimer;
     }
 
     private void Update()
@@ -37,22 +36,22 @@ public class SpawnerScript : MonoBehaviour
         if (animator.GetBool("Live"))
         {
             timer -= Time.deltaTime;
+            decorationTimer -= Time.deltaTime;
             if (timer <= 0)
             {
+                Spawn2();
+                Spawn();
+                Spawn();
                 Spawn();
                 timer = spawnTimer;
             }
-            decorationTimer -= Time.deltaTime;
             if (decorationTimer <= 0)
             {
-                //decorationTimer = decorationSpawnTimer;
-            }
-            floorDecorationTimer -= Time.deltaTime;
-            if (floorDecorationTimer <= 0)
-            {
+                SpawnDecorations(ND1);
+                SpawnDecorations(ND6);
                 SpawnDecoration();
                 SpawnFloorDecoration();
-                floorDecorationTimer = floorDecorationSpawnTimer;
+                decorationTimer = decorationSpawnTimer;
             }
         }
     }
@@ -60,25 +59,52 @@ public class SpawnerScript : MonoBehaviour
 	void Spawn()
 	{
         GameObject spawnpoint = SelectDangerousSpawner(Random.Range(0, 3));
-        GameObject newObject = Instantiate(SelectDangerous(Random.Range(0, 7)), spawnpoint.transform.position, spawnpoint.transform.rotation) as GameObject;
+        GameObject newObject = Instantiate(SelectDangerous(Random.Range(1, 7)), spawnpoint.transform.position, spawnpoint.transform.rotation) as GameObject;
+        newObject.transform.parent = spawnTransform;
+		Destroy(newObject, destructionTimer);
+	}
+
+    void Spawn2()
+	{
+        GameObject spawnpoint = SelectDangerousSpawner(Random.Range(0, 3));
+        GameObject newObject = Instantiate(SelectDangerous(0), spawnpoint.transform.position, spawnpoint.transform.rotation) as GameObject;
+        newObject.transform.parent = spawnTransform;
+		Destroy(newObject, destructionTimer);
+	}
+
+    void SpawnDecorations(GameObject spawnpoint)
+	{
+        GameObject newObject = Instantiate(SelectNotDangerous(Random.Range(0, 6)), spawnpoint.transform.position, spawnpoint.transform.rotation) as GameObject;
         newObject.transform.parent = spawnTransform;
 		Destroy(newObject, destructionTimer);
 	}
 
     void SpawnDecoration()
 	{
-        GameObject spawnpoint = SelectNotDangerousSpawner(Random.Range(0, 6));
+        GameObject spawnpoint = SelectNotDangerousSpawner(Random.Range(3, 6));
         GameObject newObject = Instantiate(SelectNotDangerous(Random.Range(0, 6)), spawnpoint.transform.position, spawnpoint.transform.rotation) as GameObject;
         newObject.transform.parent = spawnTransform;
 		Destroy(newObject, destructionTimer);
+        
+        GameObject spawnpoint2 = SelectNotDangerousSpawner(Random.Range(1, 3));
+        GameObject newObject2 = Instantiate(SelectNotDangerous(Random.Range(0, 6)), spawnpoint2.transform.position, spawnpoint2.transform.rotation) as GameObject;
+        newObject2.transform.parent = spawnTransform;
+		Destroy(newObject2, destructionTimer);
 	}
     
     void SpawnFloorDecoration()
 	{
-        GameObject spawnpoint = centralSpawner;
-        GameObject newObject = Instantiate(SelectFloorDecoration(Random.Range(0, 18)), new Vector3(Random.Range(-2.8f, 2.9f), spawnpoint.transform.position.y, spawnpoint.transform.position.z), spawnpoint.transform.rotation) as GameObject;
+        GameObject spawnpoint = SelectNotDangerousSpawner(Random.Range(3, 6));
+        Vector3 newPosition = new Vector3(Random.Range((spawnpoint.transform.position.x) -0.5f, (spawnpoint.transform.position.x) +0.6f),spawnpoint.transform.position.y, spawnpoint.transform.position.z);
+        GameObject newObject = Instantiate(SelectFloorDecoration(Random.Range(0, 18)), newPosition, spawnpoint.transform.rotation) as GameObject;
         newObject.transform.parent = spawnTransform;
 		Destroy(newObject, destructionTimer);
+
+        GameObject spawnpoint2 = SelectNotDangerousSpawner(Random.Range(1, 3));
+        Vector3 newPosition2 = new Vector3(Random.Range((spawnpoint2.transform.position.x) -0.5f, (spawnpoint2.transform.position.x) +0.6f),spawnpoint2.transform.position.y, spawnpoint2.transform.position.z);
+        GameObject newObject2 = Instantiate(SelectFloorDecoration(Random.Range(0, 18)), newPosition2, spawnpoint2.transform.rotation) as GameObject;
+        newObject2.transform.parent = spawnTransform;
+		Destroy(newObject2, destructionTimer);
 	}
 
     private GameObject SelectDangerous(int x)

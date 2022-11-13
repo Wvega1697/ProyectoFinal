@@ -7,6 +7,7 @@ public class WolfScript : MonoBehaviour
     bool jump = true;
     float jumpTimer = 0, jumpRestartTimer = 1f;
     float dodgeTimer = 0, dodgeRestartTimer = 1f;
+    float respawnTimer = 0, respawnRestartTimer = 3f;
     bool dodge = false;
     //Public
     public Rigidbody rb;
@@ -14,11 +15,13 @@ public class WolfScript : MonoBehaviour
     public int pos;
     public Vector3 _position  = new Vector3(-0.1f, 0.61f, -1.5f);
     public AudioSource audioBark, audioDoubleBark, music, audioDie;
+    public GameObject ReintentarImage;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         pos = 0;
+        respawnTimer = respawnRestartTimer;
     }
 
     void Update()
@@ -28,13 +31,19 @@ public class WolfScript : MonoBehaviour
             JumpLogic();
             if (jump) MoveLogic();
         }
-        if(Input.GetKeyDown(KeyCode.R))
+        else if (respawnTimer <= 0)
         {
-            animator.SetBool("Live", true);
-            music.Play();
-            audioDoubleBark.Play();
-            audioDie.Stop();
+            ReintentarImage.SetActive(true);
+            if(Input.GetKeyDown(KeyCode.R))
+            {
+                RespawnLogic();
+            }
         }
+        else
+        {
+            respawnTimer -= Time.deltaTime;
+        }
+        
     }
 
     void DodgeLogic()
@@ -44,8 +53,7 @@ public class WolfScript : MonoBehaviour
             if (dodgeTimer < 0.85f)
             {
                 dodge = false;
-                animator.SetBool("DodgeLeft", dodge);
-                animator.SetBool("DodgeRight", dodge);
+                //animator.SetBool("DodgeLeft", dodge);//animator.SetBool("DodgeRight", dodge);
             }
             dodgeTimer -= Time.deltaTime;
         }
@@ -62,8 +70,7 @@ public class WolfScript : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             {
                 pos -= 1;
-                dodge = true;
-                animator.SetBool("DodgeLeft", dodge);
+                dodge = true;//animator.SetBool("DodgeLeft", dodge);
                 dodgeTimer = dodgeRestartTimer;
                 audioBark.Play();
             }
@@ -74,8 +81,7 @@ public class WolfScript : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
             {
                 pos += 1;
-                dodge = true;
-                animator.SetBool("DodgeRight", dodge);
+                dodge = true;//animator.SetBool("DodgeRight", dodge);
                 dodgeTimer = dodgeRestartTimer;
                 audioBark.Play();
             }
@@ -125,7 +131,8 @@ public class WolfScript : MonoBehaviour
         }
     }
     
-    void OnTriggerEnter(Collider col) {
+    void OnTriggerEnter(Collider col)
+    {
         
         if((col.transform.gameObject.CompareTag("DangerousAll")) || (col.transform.gameObject.CompareTag("DangerousDown") && jump) || (col.transform.gameObject.CompareTag("DangerousUp") && !jump))
         {
@@ -133,5 +140,15 @@ public class WolfScript : MonoBehaviour
            music.Stop();
            audioDie.Play();
         }
+    }
+
+    void RespawnLogic()
+    {
+        animator.SetBool("Live", true);
+        music.Play();
+        audioDoubleBark.Play();
+        audioDie.Stop();
+        ReintentarImage.SetActive(false);
+        respawnTimer = respawnRestartTimer;
     }
 }
