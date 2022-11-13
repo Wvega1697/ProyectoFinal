@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6280157256639937360}
-  - component: {fileID: -1439013951985774017}
+  - component: {fileID: -2485976643286363971}
   m_Layer: 0
   m_Name: Tree13
   m_TagString: Untagged
@@ -27,12 +27,13 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5813338692264721277}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-1439013951985774017
+--- !u!114 &-2485976643286363971
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,20 +46,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
---- !u!136 &6280157255333944465
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6622244261755134407}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.39
-  m_Height: 3.37
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.22, z: 0}
 --- !u!1001 &6280157255333944470
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -132,13 +119,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da3df91e907614e4bbec9f4098e5f7ee, type: 3}
---- !u!1 &6622244261755134407 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: da3df91e907614e4bbec9f4098e5f7ee, type: 3}
-  m_PrefabInstance: {fileID: 6280157255333944470}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5813338692264721277 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: da3df91e907614e4bbec9f4098e5f7ee, type: 3}
   m_PrefabInstance: {fileID: 6280157255333944470}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6622244261755134407 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: da3df91e907614e4bbec9f4098e5f7ee, type: 3}
+  m_PrefabInstance: {fileID: 6280157255333944470}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &6280157255333944465
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6622244261755134407}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.39
+  m_Height: 3.37
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.22, z: 0}
