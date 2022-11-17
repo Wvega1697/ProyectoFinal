@@ -311,7 +311,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 46320852}
-  m_LocalRotation: {x: 0.371811, y: -0.019737145, z: 0.0079073, w: 0.928065}
+  m_LocalRotation: {x: 0.371811, y: -0.019737113, z: 0.007907285, w: 0.928065}
   m_LocalPosition: {x: 0.1, y: 6.8, z: -11.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1825,7 +1825,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 592134214}
-  m_LocalRotation: {x: 0.371811, y: -0.019737145, z: 0.0079073, w: 0.928065}
+  m_LocalRotation: {x: 0.371811, y: -0.019737113, z: 0.007907285, w: 0.928065}
   m_LocalPosition: {x: 0.1, y: 6.8, z: -11.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2946,7 +2946,7 @@ GameObject:
   - component: {fileID: 1589954169}
   m_Layer: 0
   m_Name: Water
-  m_TagString: DangerousDown
+  m_TagString: Dangerous
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

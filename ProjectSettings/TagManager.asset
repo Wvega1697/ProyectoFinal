@@ -6,9 +6,6 @@ TagManager:
   tags:
   - Decoration
   - Spawner
-  - DangerousDown
-  - DangerousUp
-  - DangerousAll
   - Dangerous
   layers:
   - Default

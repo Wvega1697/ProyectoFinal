@@ -23,7 +23,7 @@ public class WolfScript : MonoBehaviour
         animator = GetComponent<Animator>();
         pos = 0;
         respawnTimer = respawnRestartTimer;
-        Time.timeScale = 1;
+        Time.timeScale = 0;
         trail.emitting = true;
     }
 
@@ -82,8 +82,15 @@ public class WolfScript : MonoBehaviour
 
         if(dodge)
         {
-            switch (pos)
-            {
+            SetPosition();
+        }
+        dodge = false;
+    }
+
+    void SetPosition()
+    {
+        switch (pos)
+        {
             case -1:
                 _position.x = -2f;
                 break;
@@ -93,10 +100,8 @@ public class WolfScript : MonoBehaviour
             default:
                 _position.x = -0.1f;
                 break;
-            }
-            transform.position = _position;
         }
-        dodge = false;
+        transform.position = _position;
     }
 
     void JumpLogic()
@@ -123,9 +128,8 @@ public class WolfScript : MonoBehaviour
     
     void OnTriggerEnter(Collider col)
     {
-        if((col.transform.gameObject.CompareTag("DangerousAll")) || 
-            col.transform.gameObject.CompareTag("DangerousDown") || 
-            col.transform.gameObject.CompareTag("DangerousUp"))
+        Debug.Log(col.name);
+        if(col.transform.gameObject.CompareTag("Dangerous"))
         {
             animator.SetBool("Live", false);
             music.Stop();
