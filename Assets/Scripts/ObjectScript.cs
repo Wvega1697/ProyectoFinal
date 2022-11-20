@@ -29,4 +29,12 @@ public class ObjectScript : MonoBehaviour
             transform.position += direction * speed * Time.deltaTime;
         }
     }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if(col.CompareTag("Finish"))
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }

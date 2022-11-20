@@ -61,7 +61,7 @@ public class SpawnerScript : MonoBehaviour
         GameObject spawnpoint = SelectDangerousSpawner(Random.Range(0, 3));
         GameObject newObject = Instantiate(SelectDangerous(Random.Range(1, 7)), spawnpoint.transform.position, spawnpoint.transform.rotation) as GameObject;
         newObject.transform.parent = spawnTransform;
-		Destroy(newObject, destructionTimer);
+		//Destroy(newObject, destructionTimer);
 	}
 
     void Spawn2()
@@ -69,14 +69,14 @@ public class SpawnerScript : MonoBehaviour
         GameObject spawnpoint = SelectDangerousSpawner(Random.Range(0, 3));
         GameObject newObject = Instantiate(SelectDangerous(0), spawnpoint.transform.position, spawnpoint.transform.rotation) as GameObject;
         newObject.transform.parent = spawnTransform;
-		Destroy(newObject, destructionTimer);
+		//Destroy(newObject, destructionTimer);
 	}
 
     void SpawnDecorations(GameObject spawnpoint)
 	{
         GameObject newObject = Instantiate(SelectNotDangerous(Random.Range(0, 6)), spawnpoint.transform.position, spawnpoint.transform.rotation) as GameObject;
         newObject.transform.parent = spawnTransform;
-		Destroy(newObject, destructionTimer);
+		//Destroy(newObject, destructionTimer);
 	}
 
     void SpawnDecoration()
@@ -84,12 +84,12 @@ public class SpawnerScript : MonoBehaviour
         GameObject spawnpoint = SelectNotDangerousSpawner(Random.Range(3, 6));
         GameObject newObject = Instantiate(SelectNotDangerous(Random.Range(0, 6)), spawnpoint.transform.position, spawnpoint.transform.rotation) as GameObject;
         newObject.transform.parent = spawnTransform;
-		Destroy(newObject, destructionTimer);
+		//Destroy(newObject, destructionTimer);
         
         GameObject spawnpoint2 = SelectNotDangerousSpawner(Random.Range(1, 3));
         GameObject newObject2 = Instantiate(SelectNotDangerous(Random.Range(0, 6)), spawnpoint2.transform.position, spawnpoint2.transform.rotation) as GameObject;
         newObject2.transform.parent = spawnTransform;
-		Destroy(newObject2, destructionTimer);
+		//Destroy(newObject2, destructionTimer);
 	}
     
     void SpawnFloorDecoration()
@@ -98,13 +98,13 @@ public class SpawnerScript : MonoBehaviour
         Vector3 newPosition = new Vector3(Random.Range((spawnpoint.transform.position.x) -0.5f, (spawnpoint.transform.position.x) +0.6f),spawnpoint.transform.position.y, spawnpoint.transform.position.z);
         GameObject newObject = Instantiate(SelectFloorDecoration(Random.Range(0, 18)), newPosition, spawnpoint.transform.rotation) as GameObject;
         newObject.transform.parent = spawnTransform;
-		Destroy(newObject, destructionTimer);
+		//Destroy(newObject, destructionTimer);
 
         GameObject spawnpoint2 = SelectNotDangerousSpawner(Random.Range(1, 3));
         Vector3 newPosition2 = new Vector3(Random.Range((spawnpoint2.transform.position.x) -0.5f, (spawnpoint2.transform.position.x) +0.6f),spawnpoint2.transform.position.y, spawnpoint2.transform.position.z);
         GameObject newObject2 = Instantiate(SelectFloorDecoration(Random.Range(0, 18)), newPosition2, spawnpoint2.transform.rotation) as GameObject;
         newObject2.transform.parent = spawnTransform;
-		Destroy(newObject2, destructionTimer);
+		//Destroy(newObject2, destructionTimer);
 	}
 
     private GameObject SelectDangerous(int x)

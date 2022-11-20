@@ -6,7 +6,6 @@ public class WolfScript : MonoBehaviour
     Animator animator;
     bool jump = false;
     float jumpTimer = 0, jumpRestartTimer = 0.7f;
-    float dodgeTimer = 0, dodgeRestartTimer = 1f;
     float respawnTimer = 0, respawnRestartTimer = 3f;
     bool dodge = false;
     //Public
@@ -17,13 +16,12 @@ public class WolfScript : MonoBehaviour
     public AudioSource audioBark, audioDoubleBark, music, audioDie;
     public GameObject ReintentarImage;
     public TrailRenderer trail;
-
     void Start()
     {
         animator = GetComponent<Animator>();
         pos = 0;
         respawnTimer = respawnRestartTimer;
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
         trail.emitting = true;
     }
 
@@ -37,7 +35,6 @@ public class WolfScript : MonoBehaviour
         }
         else if (respawnTimer <= 0)
         {
-            ReintentarImage.SetActive(true);
             if(Input.GetKeyDown(KeyCode.R))
             {
                 RespawnLogic();
@@ -46,6 +43,7 @@ public class WolfScript : MonoBehaviour
         else
         {
             respawnTimer -= Time.deltaTime;
+            ReintentarImage.SetActive(true);
         }
         if (Input.GetKeyDown(KeyCode.T))
         {
@@ -60,8 +58,7 @@ public class WolfScript : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             {
                 pos -= 1;
-                dodge = true;//animator.SetBool("DodgeLeft", dodge);
-                dodgeTimer = dodgeRestartTimer;
+                dodge = true;//animator.SetBool("DodgeLeft", dodge);dodgeTimer = dodgeRestartTimer;
                 audioBark.Play();
             }
         }
@@ -71,8 +68,7 @@ public class WolfScript : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
             {
                 pos += 1;
-                dodge = true;//animator.SetBool("DodgeRight", dodge);
-                dodgeTimer = dodgeRestartTimer;
+                dodge = true;//animator.SetBool("DodgeRight", dodge); dodgeTimer = dodgeRestartTimer;
                 audioBark.Play();
             }
         }
@@ -128,15 +124,18 @@ public class WolfScript : MonoBehaviour
     
     void OnTriggerEnter(Collider col)
     {
-        Debug.Log(col.name);
         if(col.transform.gameObject.CompareTag("Dangerous"))
         {
-            animator.SetBool("Live", false);
-            music.Stop();
-            audioDie.Play();
-            jump = false;
-            animator.SetBool("Jump", false);
-            _magic.SetActive(false);
+            if(animator.GetBool("Live"))
+            {
+                animator.SetBool("Live", false);
+                animator.SetBool("Jump", false);
+                music.Stop();
+                audioDie.Play();
+                jump = false;
+                _magic.SetActive(false);
+                Time.timeScale = 1;
+            }
         }
     }
 
