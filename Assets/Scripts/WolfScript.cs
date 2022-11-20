@@ -7,6 +7,7 @@ public class WolfScript : MonoBehaviour
     bool jump = false;
     float jumpTimer = 0, jumpRestartTimer = 0.7f;
     float respawnTimer = 0, respawnRestartTimer = 3f;
+    float inmortalTimer = 0, inmortalRestartTimer = 0.5f;
     bool dodge = false;
     //Public
     public Rigidbody rb;
@@ -20,8 +21,7 @@ public class WolfScript : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         pos = 0;
-        respawnTimer = respawnRestartTimer;
-        //Time.timeScale = 0;
+        respawnTimer = respawnRestartTimer;//Time.timeScale = 0;
         trail.emitting = true;
     }
 
@@ -37,6 +37,7 @@ public class WolfScript : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.R))
             {
+                inmortalTimer = inmortalRestartTimer;
                 RespawnLogic();
             }
         }
@@ -48,6 +49,10 @@ public class WolfScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T))
         {
             Time.timeScale += 0.25f;
+        }
+        if (inmortalTimer > 0)
+        {
+            inmortalTimer -= Time.deltaTime;
         }
     }
 
@@ -124,18 +129,17 @@ public class WolfScript : MonoBehaviour
     
     void OnTriggerEnter(Collider col)
     {
-        if(col.transform.gameObject.CompareTag("Dangerous"))
+        if(col.transform.gameObject.CompareTag("Dangerous") &&
+            animator.GetBool("Live") &&
+            inmortalTimer <= 0)
         {
-            if(animator.GetBool("Live"))
-            {
-                animator.SetBool("Live", false);
-                animator.SetBool("Jump", false);
-                music.Stop();
-                audioDie.Play();
-                jump = false;
-                _magic.SetActive(false);
-                Time.timeScale = 1;
-            }
+            animator.SetBool("Live", false);
+            animator.SetBool("Jump", false);
+            music.Stop();
+            audioDie.Play();
+            jump = false;
+            _magic.SetActive(false);
+            Time.timeScale = 1;
         }
     }
 

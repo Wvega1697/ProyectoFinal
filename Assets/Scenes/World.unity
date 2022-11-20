@@ -2823,7 +2823,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Score: 10'
+  m_text: Score:0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 40a1ef6e4a3bbb144bf1b56f786ae83d, type: 2}
   m_sharedMaterial: {fileID: -3438163706696088219, guid: 40a1ef6e4a3bbb144bf1b56f786ae83d, type: 2}
@@ -3867,7 +3867,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.1
+  m_Time: 0.2
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -3921,7 +3921,7 @@ TrailRenderer:
     textureMode: 0
     shadowBias: 0.5
     generateLightingData: 0
-  m_MinVertexDistance: 0.1
+  m_MinVertexDistance: 0
   m_Autodestruct: 0
   m_Emitting: 1
 --- !u!1 &1733408499

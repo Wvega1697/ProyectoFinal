@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     {
         if (animator.GetBool("Live"))
         {
-            scoreText.SetText("Score: " + score);
+            scoreText.SetText("Score:" + score);
             if (scoreTimer <= 0)
             {
                 score += 10;
