@@ -25,6 +25,5 @@ public class Menu : MonoBehaviour
             timer -= Time.deltaTime;
             buttons[0].interactable = false;
         }
-        if (timer <= 0) Debug.Log("FINISH!"); timer = 100f;
     }
 }

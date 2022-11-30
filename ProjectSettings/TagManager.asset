@@ -8,6 +8,8 @@ TagManager:
   - Spawner
   - Dangerous
   - Score
+  - Scale
+  - Grass
   layers:
   - Default
   - TransparentFX
