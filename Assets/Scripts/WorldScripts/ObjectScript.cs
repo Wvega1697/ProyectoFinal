@@ -12,19 +12,29 @@ public class ObjectScript : MonoBehaviour
 
     void Update()
     {
-        transform.position += direction * GameManager.instance.objectSpeed * Time.deltaTime;
+        if (name.Contains("Chick")) ChickLogic();
+        else transform.position += direction * GameManager.instance.objectSpeed * Time.deltaTime;
     }
 
     void OnTriggerEnter(Collider col)
     {
-        if(col.CompareTag("Finish") || col.CompareTag("Player")) 
+        if (col.CompareTag("Finish") || col.CompareTag("Player")) 
         {
-            PoolManager.instance.StoreInstance(gameObject);
             if(gameObject.CompareTag("Score"))
             {
-                GameManager.instance.score += 5;
+                GameManager.instance.score += 10;
             }
+            PoolManager.instance.StoreInstance(gameObject);
         }
-        
+
+    }
+
+    void ChickLogic()
+    {
+        transform.position += direction * (GameManager.instance.objectSpeed - (GameManager.instance.objectSpeed * 0.66f)) * Time.deltaTime;
+        gameObject.GetComponent<Animator>().SetBool("Run", GameManager.instance.live);
+        gameObject.GetComponent<Animator>().SetBool("Eat", !GameManager.instance.live);
+        if (!GameManager.instance.live) gameObject.GetComponentInChildren< ParticleSystem > ().Stop();
+        else gameObject.GetComponentInChildren<ParticleSystem>().Play();
     }
 }

@@ -13,8 +13,8 @@ public class WolfScript : MonoBehaviour
     public Rigidbody rb;
     public int pos;
     public Vector3 _position  = new Vector3(-0.1f, 0.61f, -1.5f);
-    public AudioSource audioBark, audioDoubleBark, music, audioDie, audioHurt;
-    public GameObject ReintentarImage, _magic, starB, heart1, heart2, grass;
+    public AudioSource audioMove, audioJump, music, audioDie, audioHurt, audioChick, audioScore, audioBark, audioDoubleBark;
+    public GameObject ReintentarImage, _magic, starB, heart1, heart2, grass, chick1, chick2, chick3;
     public TrailRenderer trail;
     void Start()
     {
@@ -27,7 +27,7 @@ public class WolfScript : MonoBehaviour
 
     void Update()
     {
-        if (animator.GetBool("Live"))
+        if (GameManager.instance.live)
         {
             JumpLogic();
             if (!jump) MoveLogic();
@@ -45,6 +45,7 @@ public class WolfScript : MonoBehaviour
         }
         else
         {
+            grass.GetComponent<ParticleSystem>().Stop();
             respawnTimer -= Time.deltaTime;
             ReintentarImage.SetActive(true);
         }
@@ -55,7 +56,7 @@ public class WolfScript : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.H))
         {
-            audioHurt.Play();
+            audioChick.Play();
         }
         if (inmortalTimer > 0)
         {
@@ -82,7 +83,7 @@ public class WolfScript : MonoBehaviour
             {
                 pos -= 1;
                 dodge = true;//animator.SetBool("DodgeLeft", dodge);dodgeTimer = dodgeRestartTimer;
-                audioBark.Play();
+                audioMove.Play();
             }
         }
 
@@ -92,7 +93,7 @@ public class WolfScript : MonoBehaviour
             {
                 pos += 1;
                 dodge = true;//animator.SetBool("DodgeRight", dodge); dodgeTimer = dodgeRestartTimer;
-                audioBark.Play();
+                audioMove.Play();
             }
         }
 
@@ -134,7 +135,7 @@ public class WolfScript : MonoBehaviour
             {
                 jump = true;
                 jumpTimer = jumpRestartTimer;
-                audioDoubleBark.Play();
+                audioJump.Play();
                 trail.emitting = false;
                 grass.GetComponent<ParticleSystem>().Play();
             }
@@ -173,13 +174,23 @@ public class WolfScript : MonoBehaviour
                 audioHurt.Play();
             }
         }
+        if (col.transform.gameObject.CompareTag("Chick"))
+        {
+            chick1.GetComponent<ParticleSystem>().Play();
+            chick2.GetComponent<ParticleSystem>().Play();
+            chick3.GetComponent<ParticleSystem>().Play();
+            audioChick.Play();
+            audioScore.Play();
+            audioBark.Play();
+            GameManager.instance.score += 25;
+        }
     }
 
     void RespawnLogic()
     {
         animator.SetBool("Live", true);
         music.Play();
-        audioDoubleBark.Play();
+        audioJump.Play();
         audioDie.Stop();
         ReintentarImage.SetActive(false);
         respawnTimer = respawnRestartTimer;

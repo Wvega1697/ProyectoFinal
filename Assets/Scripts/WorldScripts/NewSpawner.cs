@@ -8,9 +8,9 @@ public class NewSpawner : MonoBehaviour
     public float decorationRestarter = 0.1f, grassRestarter = 0.05f, treesRestarter = 1f, rocksRestarter = 2f;
     public List<Transform> lanesTransforms = new List<Transform>();
     public List<Transform> treesTransforms = new List<Transform>();
-    public Transform grassTransform, dangerousTransform, treesTransform, decorationTransform, scoreTransform;
+    public Transform grassTransform, dangerousTransform, treesTransform, decorationTransform, scoreTransform, chickTransform;
     //Private
-    float grassTimer, decorationTimer, treesTimer, rocksTimer;
+    float grassTimer, decorationTimer, treesTimer, rocksTimer, chickTimer;
 
     private void Start()
     {
@@ -18,11 +18,12 @@ public class NewSpawner : MonoBehaviour
         treesTimer = treesRestarter;
         rocksTimer = rocksRestarter;
         grassTimer = grassRestarter;
+        chickTimer = 5;
     }
 
     private void Update()
     {
-        if(GameManager.instance.live)
+        if (GameManager.instance.live)
         {
             if (grassTimer > 0)
             {
@@ -65,26 +66,40 @@ public class NewSpawner : MonoBehaviour
                 SpawnerLogic("Rock");
                 SpawnerLogic("Special Rock");
             }
+            if (chickTimer > 0)
+            {
+                chickTimer -= Time.deltaTime;
+            }
+            else
+            {
+                chickTimer = Random.Range(4, 8);
+                SpawnerLogic("Toon Chick");
+            }
         }
+        if (gameObject.transform.position.z < 21) gameObject.transform.position += new Vector3(0, 0, (5f * Time.deltaTime));
     }
 
     private void SpawnerLogic(string type)
     {
-
+        bool scoreSpawn = "Special Rock".Equals(type);
         GameObject clone = PoolManager.instance.GetInstance(type);
         if ("Special Rock".Equals(type)) type = "Rock";
         switch (type)
         {
             case "Tree":
-                clone.transform.position += treesTransforms[Random.Range(1, treesTransforms.Count - 1)].position;
+                clone.transform.position += treesTransforms[Random.Range(1, 3)].position;
                 clone.transform.parent = treesTransform;
+                GameObject clone2 = PoolManager.instance.GetInstance(type);
+                clone2.transform.position += treesTransforms[Random.Range(3, treesTransforms.Count - 1)].position;
+                clone2.transform.parent = treesTransform;
                 break;
             case "Rock":
                 clone.transform.position += lanesTransforms[Random.Range(0, lanesTransforms.Count)].position;
                 clone.transform.parent = dangerousTransform;
-                GameObject scoreClone = PoolManager.instance.GetInstance("Score");
-                scoreClone.transform.position = clone.transform.position;
-                scoreClone.transform.parent = scoreTransform;
+                break;
+            case "Toon Chick":
+                clone.transform.position += lanesTransforms[Random.Range(0, lanesTransforms.Count)].position;
+                clone.transform.parent = chickTransform;
                 break;
             default:
                 clone.transform.position += lanesTransforms[Random.Range(0, lanesTransforms.Count)].position;
@@ -93,7 +108,12 @@ public class NewSpawner : MonoBehaviour
                 else clone.transform.parent = decorationTransform;
                 break;
         }
-        
+        if (scoreSpawn)
+        {
+            GameObject scoreClone = PoolManager.instance.GetInstance("Score");
+            scoreClone.transform.position = clone.transform.position;
+            scoreClone.transform.parent = scoreTransform;
+        }
     }
 
     private void SpawnerLogic(string type, int transformId)

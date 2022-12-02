@@ -10,6 +10,7 @@ TagManager:
   - Score
   - Scale
   - Grass
+  - Chick
   layers:
   - Default
   - TransparentFX
