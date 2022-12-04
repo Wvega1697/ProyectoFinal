@@ -43,8 +43,6 @@ public class NewSpawner : MonoBehaviour
             {
                 decorationTimer = decorationRestarter;
                 SpawnerLogic("Decoration");
-                SpawnerLogic("Tree", 0);
-                SpawnerLogic("Tree", 5);
             }
             if (treesTimer > 0)
             {

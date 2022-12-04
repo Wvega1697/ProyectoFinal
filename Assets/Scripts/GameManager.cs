@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public int totalLives;
     public List<GameObject> livesImages = new List<GameObject>();
     public float objectSpeed;
+    public bool pause;
+    public GameObject pauseImage;
 
     Animator animator;
     Vector3 cameraPosition = new Vector3(0, 6.05f, -11.72f);
@@ -38,6 +40,7 @@ public class GameManager : MonoBehaviour
         hurt = false;
         objectSpeed = speedRestarter;
         RestartLives();
+        pause = false;
     }
 
     // Update is called once per frame
@@ -46,16 +49,41 @@ public class GameManager : MonoBehaviour
         live = animator.GetBool("Live");
         if (live)
         {
-            scoreText.text = "Score:" + score;
-            if (objectSpeed != speedRestarter) objectSpeed = speedRestarter;
-            if (hurt) Time.timeScale = 0.5f;
-            else ScoreLogic();
+            if (pause)
+            {
+                Time.timeScale = 0f;
+            }
+            else
+            {
+                scoreText.text = "Score:" + score;
+                if (objectSpeed != speedRestarter) objectSpeed = speedRestarter;
+                if (hurt) Time.timeScale = 0.5f;
+                else ScoreLogic();
+            }
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                pause = !pause;
+                pauseImage.SetActive(pause);
+            }
         }
         else
         {
             score = 0;
             objectSpeed = 0;
         }
+    }
+
+    public void noPause()
+    {
+        pause = false;
+    }
+
+    public void exit()
+    {
+        pause = false;
+        Time.timeScale = 1f;
+        objectSpeed = 0;
+        TransitionScript.instance.LoadSpecificLevel(0);
     }
 
     private void ScoreLogic()

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class TransitionScript : MonoBehaviour
 {
     public static TransitionScript instance;
-
+    public GameObject wolfSprite;
     public Animator transition;
 
     private void Awake()
@@ -37,6 +37,8 @@ public class TransitionScript : MonoBehaviour
         //Wait
         yield return new WaitForSecondsRealtime(1.5f);
         //Load Scene
+        transition.ResetTrigger("Start");
+        wolfSprite.SetActive(false);
         SceneManager.LoadScene(levelIndex);
     }
 }

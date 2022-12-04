@@ -71,6 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76dd7d19bd9c83142b36fad531c701f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wolfSprite: {fileID: 6551742743995544830}
   transition: {fileID: 6768219337417214751}
 --- !u!1 &6551742743995544830
 GameObject:
