@@ -8,7 +8,7 @@ public class PoolManager : MonoBehaviour
         treesPool = new List<ObjectPool>(),
         rocksPool = new List<ObjectPool>(),
         grassPool = new List<ObjectPool>();
-    public ObjectPool scorePool = new ObjectPool(), monsterPool = new ObjectPool(), hitPool = new ObjectPool();
+    public ObjectPool chicksPool = new ObjectPool();
     public List<Material> randomMaterials = new List<Material>();
 
     private void Awake()
@@ -30,9 +30,9 @@ public class PoolManager : MonoBehaviour
         {
             foreach (ObjectPool objectPool in rocksPool)
             {
-                if (objectPool.newInstance.name.Equals(fixedName))
+                if (objectPool.instance.newInstance.name.Equals(fixedName))
                 {
-                    objectPool.StoreInstance(clone);
+                    objectPool.instance.StoreInstance(clone);
                     break;
                 }
             }
@@ -41,9 +41,9 @@ public class PoolManager : MonoBehaviour
         {
             foreach (ObjectPool objectPool in treesPool)
             {
-                if (objectPool.newInstance.name.Equals(fixedName))
+                if (objectPool.instance.newInstance.name.Equals(fixedName))
                 {
-                    objectPool.StoreInstance(clone);
+                    objectPool.instance.StoreInstance(clone);
                     break;
                 }
             }
@@ -52,32 +52,24 @@ public class PoolManager : MonoBehaviour
         {
             foreach (ObjectPool objectPool in grassPool)
             {
-                if (objectPool.newInstance.name.Equals(fixedName))
+                if (objectPool.instance.newInstance.name.Equals(fixedName))
                 {
-                    objectPool.StoreInstance(clone);
+                    objectPool.instance.StoreInstance(clone);
                     break;
                 }
             }
         }
-        else if (fixedName.Contains("Score"))
-        {
-            scorePool.StoreInstance(clone);
-        }
         else if (fixedName.Contains("Chick"))
         {
-            monsterPool.StoreInstance(clone);
-        }
-        else if (fixedName.Contains("Hit"))
-        {
-            hitPool.StoreInstance(clone);
+            chicksPool.instance.StoreInstance(clone);
         }
         else
         {
             foreach (ObjectPool objectPool in decorationPool)
             {
-                if (objectPool.newInstance.name.Equals(fixedName))
+                if (objectPool.instance.newInstance.name.Equals(fixedName))
                 {
-                    objectPool.StoreInstance(clone);
+                    objectPool.instance.StoreInstance(clone);
                     break;
                 }
             }
@@ -90,35 +82,27 @@ public class PoolManager : MonoBehaviour
         ObjectPool pool;
         if("Tree".Equals(type))
         {
-            pool = treesPool[Random.Range(0, treesPool.Count)];
+            pool = treesPool[Random.Range(0, treesPool.Count)].instance;
         }
         else if ("Rock".Equals(type))
         {
-            pool = rocksPool[Random.Range(0, rocksPool.Count -1)];
+            pool = rocksPool[Random.Range(0, rocksPool.Count -1)].instance;
         }
         else if ("Special Rock".Equals(type))
         {
-            pool = rocksPool[rocksPool.Count - 1];
+            pool = rocksPool[rocksPool.Count - 1].instance;
         }
         else if ("Grass".Equals(type))
         {
-            pool = grassPool[Random.Range(0, grassPool.Count)];
-        }
-        else if ("Score".Equals(type))
-        {
-            pool = scorePool;
+            pool = grassPool[Random.Range(0, grassPool.Count)].instance;
         }
         else if ("Toon Chick".Equals(type))
         {
-            pool = monsterPool;
-        }
-        else if ("Hit".Equals(type))
-        {
-            pool = hitPool;
+            pool = chicksPool.instance;
         }
         else
         {
-            pool = decorationPool[Random.Range(0, decorationPool.Count)];
+            pool = decorationPool[Random.Range(0, decorationPool.Count)].instance;
         }
         newInstance = pool.GetInstance();
         if (type.Contains("Rock")) newInstance = RandomMaterial(newInstance);

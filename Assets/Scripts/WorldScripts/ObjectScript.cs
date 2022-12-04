@@ -20,7 +20,7 @@ public class ObjectScript : MonoBehaviour
     {
         if (col.CompareTag("Finish") || col.CompareTag("Player")) 
         {
-            if(gameObject.CompareTag("Score"))
+            if(gameObject.name.Contains("Rock7"))
             {
                 GameManager.instance.score += 10;
             }
