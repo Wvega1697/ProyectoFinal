@@ -308,7 +308,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a08f1632168a85748bdb65b774974d6a, type: 2}
+  - {fileID: 2100000, guid: 69fbf02d77e32a74d87ff84a81ebbf46, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -524,7 +524,7 @@ GameObject:
   - component: {fileID: -3113218409908856791}
   - component: {fileID: 2560220441782027322}
   m_Layer: 0
-  m_Name: Toon Chick Blue
+  m_Name: Toon Chick Red
   m_TagString: Chick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -800,7 +800,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.0039215684, g: 0.1159915, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.0039215684, b: 0.054201595, a: 1}
   m_Intensity: 10
   m_Range: 5
   m_SpotAngle: 30
@@ -861,7 +861,7 @@ PrefabInstance:
     - target: {fileID: 4338683890671512771, guid: bddbc282d69194d4c9130d08fd341e8e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4a5c51c4580345a48a3ebe2364e20356, type: 2}
+      objectReference: {fileID: 2100000, guid: aa17b46b9c8f1ca42a4a1941c133af8a, type: 2}
     - target: {fileID: 4344868985886841175, guid: bddbc282d69194d4c9130d08fd341e8e, type: 3}
       propertyPath: CollisionModule.quality
       value: 0

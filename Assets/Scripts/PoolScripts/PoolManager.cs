@@ -8,7 +8,7 @@ public class PoolManager : MonoBehaviour
         treesPool = new List<ObjectPool>(),
         rocksPool = new List<ObjectPool>(),
         grassPool = new List<ObjectPool>();
-    public ObjectPool chicksPool = new ObjectPool();
+    public ObjectPool chicksPool = new ObjectPool(), scorePool = new ObjectPool();
     public List<Material> randomMaterials = new List<Material>();
 
     private void Awake()
@@ -63,6 +63,10 @@ public class PoolManager : MonoBehaviour
         {
             chicksPool.instance.StoreInstance(clone);
         }
+        else if (fixedName.Contains("Score"))
+        {
+            scorePool.instance.StoreInstance(clone);
+        }
         else
         {
             foreach (ObjectPool objectPool in decorationPool)
@@ -96,6 +100,10 @@ public class PoolManager : MonoBehaviour
         {
             pool = grassPool[Random.Range(0, grassPool.Count)].instance;
         }
+        else if ("Score".Equals(type))
+        {
+            pool = scorePool.instance;
+        }
         else if ("Toon Chick".Equals(type))
         {
             pool = chicksPool.instance;
@@ -113,7 +121,7 @@ public class PoolManager : MonoBehaviour
 
     private GameObject RandomMaterial(GameObject newInstance)
     {
-        newInstance.GetComponent<Renderer>().material = randomMaterials[Random.Range(0, randomMaterials.Count)];
+        newInstance.GetComponent<Renderer>().material = randomMaterials[Random.Range(0, (newInstance.name.Contains("Rock8") ? 3 : randomMaterials.Count))];
         return newInstance;
     }
 }

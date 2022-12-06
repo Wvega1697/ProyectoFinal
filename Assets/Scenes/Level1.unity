@@ -24878,6 +24878,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1448725983}
+  - component: {fileID: 1448725986}
   - component: {fileID: 1448725985}
   m_Layer: 0
   m_Name: Spawners
@@ -24910,9 +24911,41 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1448725982}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0dac8861df519ae4da9f53e4aae69ef2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  decorationRestarter: 0.25
+  grassRestarter: 0.05
+  treesRestarter: 0.5
+  rocksRestarter: 5
+  lanesTransforms:
+  - {fileID: 418866032}
+  - {fileID: 1607873605}
+  - {fileID: 868089472}
+  treesTransforms:
+  - {fileID: 132609576}
+  - {fileID: 871207789}
+  - {fileID: 188781498}
+  - {fileID: 913563511}
+  - {fileID: 1467810069}
+  - {fileID: 472227575}
+  grassTransform: {fileID: 2011989315}
+  dangerousTransform: {fileID: 601012890}
+  treesTransform: {fileID: 1390833884}
+  decorationTransform: {fileID: 1471053303}
+  chickTransform: {fileID: 840394334}
+--- !u!114 &1448725986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448725982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a03deeff5a844cd4898d2cf8bfe59eb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   decorationRestarter: 0.25
