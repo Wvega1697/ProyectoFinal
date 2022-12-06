@@ -6,10 +6,11 @@ TagManager:
   tags:
   - Decoration
   - Spawner
-  - DangerousDown
-  - DangerousUp
-  - DangerousAll
   - Dangerous
+  - Score
+  - Scale
+  - Grass
+  - Chick
   layers:
   - Default
   - TransparentFX

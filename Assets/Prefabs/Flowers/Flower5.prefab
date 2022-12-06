@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5273862692817837275}
   - component: {fileID: 7986132716322514961}
   - component: {fileID: 1818574698742425519}
+  - component: {fileID: 8440188631828011949}
   m_Layer: 0
   m_Name: Flower5
   m_TagString: Untagged
@@ -28,7 +29,8 @@ Transform:
   m_GameObject: {fileID: 8490566317008013764}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -52,6 +54,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -95,4 +98,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df005ccc52e8daa42b947d37b65a6524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+--- !u!65 &8440188631828011949
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8490566317008013764}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6900604, y: 0.486533, z: 0.6900604}
+  m_Center: {x: 0.0015443116, y: 0.16826648, z: 0.000000014901161}

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3520832107959754883}
   - component: {fileID: 1673216368531199049}
   - component: {fileID: -2631705778355056553}
+  - component: {fileID: -8459841665395772463}
   m_Layer: 0
   m_Name: Mushroom8
   m_TagString: Untagged
@@ -28,7 +29,8 @@ Transform:
   m_GameObject: {fileID: 880604481442837916}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -52,6 +54,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -96,4 +99,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df005ccc52e8daa42b947d37b65a6524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+--- !u!65 &-8459841665395772463
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880604481442837916}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.49085245, y: 0.39638206, z: 0.49706024}
+  m_Center: {x: 0.03293766, y: 0.18819104, z: 0.0010755882}
