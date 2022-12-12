@@ -11,6 +11,9 @@ TagManager:
   - Scale
   - Grass
   - Chick
+  - MonsterObject
+  - MonsterBody
+  - Boss
   layers:
   - Default
   - TransparentFX

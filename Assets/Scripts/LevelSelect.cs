@@ -27,8 +27,7 @@ public class LevelSelect : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            int level = SceneManager.GetActiveScene().buildIndex + position;
-            TransitionScript.instance.LoadSpecificLevel(level);
+            TransitionScript.instance.LoadSpecificLevel(SceneManager.GetActiveScene().buildIndex + position);
         }
     }
 

@@ -13,7 +13,6 @@ public class Menu : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         hawl = false;
-
     }
 
     void Update()
@@ -25,5 +24,6 @@ public class Menu : MonoBehaviour
             timer -= Time.deltaTime;
             buttons[0].interactable = false;
         }
+        if(Time.timeScale != 1) Time.timeScale = 1f;
     }
 }
