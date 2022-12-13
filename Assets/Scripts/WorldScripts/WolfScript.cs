@@ -5,7 +5,7 @@ public class WolfScript : MonoBehaviour
     //Private
     Animator animator;
     bool jump = false;
-    float jumpTimer = 0, jumpRestartTimer = 0.7f;
+    float jumpTimer = 0, jumpRestartTimer = 0.9f;
     float respawnTimer = 0, respawnRestartTimer = 3f;
     float inmortalTimer = 0, inmortalRestartTimer = 0.3f;
     bool dodge = false;
@@ -27,9 +27,9 @@ public class WolfScript : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.instance.live)
+        if (GameManager.instance.live && !GameManager.instance.pause)
         {
-            JumpLogic();
+            if(!GameManager.instance.hurt) JumpLogic();
             if (!jump) MoveLogic();
             if (!music.isPlaying && inmortalTimer <= 0) music.Play();
         }

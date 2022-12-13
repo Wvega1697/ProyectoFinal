@@ -88,7 +88,7 @@ public class SpawnerLvl3 : MonoBehaviour
                 break;
             case "Boss":
                 clone.transform.position += lanesTransforms[Random.Range(0, lanesTransforms.Count)].position;
-                clone.transform.position = new Vector3(Random.Range(-1.14f, 0.9f), clone.transform.position.y, clone.transform.position.z);
+                clone.transform.position = new Vector3(Random.Range(-2f, 2f), clone.transform.position.y, clone.transform.position.z);
                 break;
             case "Toon Chick":
                 clone.transform.position += lanesTransforms[Random.Range(0, lanesTransforms.Count)].position;

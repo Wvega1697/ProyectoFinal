@@ -776,6 +776,7 @@ GameObject:
   - component: {fileID: 5112874115157753019}
   - component: {fileID: 1830429236388504836}
   - component: {fileID: 6975957724736491576}
+  - component: {fileID: 1496121412118971116}
   m_Layer: 0
   m_Name: Boss Metalon Purple
   m_TagString: Boss
@@ -847,7 +848,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 2, z: 1}
+  m_Size: {x: 1.29, y: 2, z: 1}
   m_Center: {x: -0, y: 1, z: -0}
 --- !u!54 &5112874115157753019
 Rigidbody:
@@ -891,6 +892,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df005ccc52e8daa42b947d37b65a6524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &1496121412118971116
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462720695320296}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.4, y: 0.77, z: 2.29}
+  m_Center: {x: -0, y: 0.37, z: 0}
 --- !u!1 &1486048802852170
 GameObject:
   m_ObjectHideFlags: 0

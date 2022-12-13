@@ -16,8 +16,10 @@ public class GameManager : MonoBehaviour
     public bool pause;
     public GameObject restartImage, pauseImage;
     public int level;
+    public Button yes, no;
 
     Animator animator;
+    bool pausePosition;
     //Vector3 cameraPosition = new Vector3(0, 6.05f, -11.72f);
 
     private void Awake()
@@ -42,31 +44,42 @@ public class GameManager : MonoBehaviour
         objectSpeed = speedRestarter;
         RestartLives();
         pause = false;
+        pausePosition = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         live = animator.GetBool("Live");
-        if (live)
+        if (pause)
         {
-            if (pause)
+            objectSpeed = 0;
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             {
-                objectSpeed = 0;
+                if (pausePosition)
+                {
+                    yes.Select();
+                    pausePosition = false;
+                }
             }
-            else
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
             {
-                objectSpeed = 10;
-                scoreText.text = "Score:" + score;
-                if (objectSpeed != speedRestarter) objectSpeed = speedRestarter;
-                if (hurt) Time.timeScale = 0.25f;
-                else ScoreLogic();
+                if (!pausePosition)
+                {
+                    no.Select();
+                    pausePosition = true;
+                }
             }
-            if (Input.GetKeyDown(KeyCode.Escape))
+        }
+        else if(live)
+        {
+            scoreText.text = "Score:" + score;
+            if (objectSpeed != speedRestarter) objectSpeed = speedRestarter;
+            if (hurt)
             {
-                pause = !pause;
-                pauseImage.SetActive(pause);
+                Time.timeScale = 0.25f;
             }
+            else ScoreLogic();
             restartImage.SetActive(false);
         }
         else
@@ -74,6 +87,20 @@ public class GameManager : MonoBehaviour
             score = 0;
             objectSpeed = 0;
             restartImage.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                exit();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Escape) && live)
+        {
+            pause = !pause;
+            pauseImage.SetActive(pause);
+            if (pause)
+            {
+                yes.Select();
+                pausePosition = false;
+            }
         }
     }
 

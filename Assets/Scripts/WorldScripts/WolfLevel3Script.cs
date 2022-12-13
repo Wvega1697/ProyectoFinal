@@ -8,14 +8,14 @@ public class WolfLevel3Script : MonoBehaviour
     bool jump = false;
     float jumpTimer = 0, jumpRestartTimer = 0.7f;
     float respawnTimer = 0, respawnRestartTimer = 3f;
-    float inmortalTimer = 0, inmortalRestartTimer = 0.3f;
+    float inmortalTimer = 0, inmortalRestartTimer = 0.5f;
     bool dodge = false;
     //Public
     public Rigidbody rb;
     public int pos;
     public Vector3 _position = new Vector3(-0.1f, 0.61f, -1.5f);
     public AudioSource audioMove, audioJump, music, audioDie, audioHurt, audioChick, audioScore, audioBark, audioMonster, audioRocks;
-    public GameObject _magic, starB, heart1, heart2, grass, chick1, chick2, chick3;
+    public GameObject _magic, starB, heart1, heart2, grass, chick1, chick2, chick3, destroyer2;
     public TrailRenderer trail;
 
     private void Awake()
@@ -41,11 +41,22 @@ public class WolfLevel3Script : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.instance.live)
+        if (GameManager.instance.live && !GameManager.instance.pause)
         {
-            JumpLogic();
+            if (!GameManager.instance.hurt) JumpLogic();
             MoveLogic();
-            if (!music.isPlaying && inmortalTimer <= 0) music.Play();
+            starB.SetActive(false);
+            if (inmortalTimer > 0)
+            {
+                SetPosition();
+                inmortalTimer -= Time.deltaTime;
+            }
+            else
+            {
+                if (!music.isPlaying) music.Play();
+                GameManager.instance.hurt = false;
+                destroyer2.transform.localScale = new Vector3(4.5f, 3f, 5f);
+            }
         }
         else if (respawnTimer <= 0)
         {
@@ -55,32 +66,14 @@ public class WolfLevel3Script : MonoBehaviour
                 heart2.GetComponent<ParticleSystem>().Play();
                 inmortalTimer = inmortalRestartTimer;
                 RespawnLogic();
+                destroyer2.transform.localScale = new Vector3(4.5f, 3f, 55f);
             }
+            starB.SetActive(false);
         }
         else
         {
             grass.GetComponent<ParticleSystem>().Stop();
             respawnTimer -= Time.deltaTime;
-        }
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            Time.timeScale += 0.25f;
-            Debug.Log("New time scale: " + Time.timeScale);
-        }
-        if (inmortalTimer > 0)
-        {
-            SetPosition();
-            inmortalTimer -= Time.deltaTime;
-        }
-        else
-        {
-            GameManager.instance.hurt = false;
-            starB.SetActive(false);
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            GameManager.instance.totalLives += 1;
-            Debug.Log("Lives: " + GameManager.instance.totalLives);
         }
     }
 

@@ -723,7 +723,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 46320852}
-  m_LocalRotation: {x: 0.18577777, y: 0.00000002928352, z: -0.0000000055366094, w: 0.9825918}
+  m_LocalRotation: {x: 0.1857778, y: 6.184633e-17, z: 2.1592601e-16, w: 0.9825918}
   m_LocalPosition: {x: -0.1, y: 8.135, z: -11.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7950,6 +7950,7 @@ GameObject:
   - component: {fileID: 528548537}
   - component: {fileID: 528548540}
   - component: {fileID: 528548539}
+  - component: {fileID: 528548541}
   m_Layer: 5
   m_Name: PauseImage
   m_TagString: Untagged
@@ -8013,6 +8014,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 528548536}
   m_CullTransparentMesh: 1
+--- !u!95 &528548541
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528548536}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b69fda842cb549245afb5f933f0d4b91, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &577538986
 GameObject:
   m_ObjectHideFlags: 0
@@ -8131,7 +8152,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 592134214}
-  m_LocalRotation: {x: 0.18577777, y: 0.00000002928352, z: -0.0000000055366094, w: 0.9825918}
+  m_LocalRotation: {x: 0.1857778, y: 6.184633e-17, z: 2.1592601e-16, w: 0.9825918}
   m_LocalPosition: {x: -0.1, y: 8.135, z: -11.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14387,6 +14408,8 @@ MonoBehaviour:
   restartImage: {fileID: 169515962}
   pauseImage: {fileID: 1173903285}
   level: 1
+  yes: {fileID: 1681737503}
+  no: {fileID: 2049584169}
 --- !u!4 &979224014
 Transform:
   m_ObjectHideFlags: 0
@@ -35050,14 +35073,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1656640346}
-  m_LocalRotation: {x: -0, y: -0, z: -0.046252623, w: 0.99892986}
+  m_LocalRotation: {x: 0, y: 0, z: -0.06148409, w: 0.9981081}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 169515963}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -5.302}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -7.05}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 36, y: -3}
@@ -35085,10 +35108,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: b70f32d1a696c0949b60ce9e9e909796, type: 3}
-    m_FontSize: 80
+    m_FontSize: 54
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 10
+    m_MinSize: 5
     m_MaxSize: 80
     m_Alignment: 4
     m_AlignByGeometry: 1
@@ -35096,7 +35119,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Press R to retry
+  m_Text: 'Press R to retry.
+
+    Press X to exit.'
 --- !u!222 &1656640349
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -35937,6 +35962,7 @@ MonoBehaviour:
   chicksPool: {fileID: 840394335}
   scorePool: {fileID: 2120724272}
   monsterPool: {fileID: 0}
+  bossPool: {fileID: 0}
   randomMaterials:
   - {fileID: 2100000, guid: f4a541773b25b38418a3d5cc1a6e0e1b, type: 2}
   - {fileID: 2100000, guid: fc1bf5cbb70eb7a48b7778aa081f1739, type: 2}
