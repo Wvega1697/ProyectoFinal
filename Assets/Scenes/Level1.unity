@@ -36042,9 +36042,7 @@ MonoBehaviour:
   - {fileID: 2011989317}
   - {fileID: 2011989316}
   chicksPool: {fileID: 840394335}
-  scorePool: {fileID: 2120724272}
-  monsterPool: {fileID: 0}
-  bossPool: {fileID: 0}
+  scorePool: {fileID: 0}
   randomMaterials:
   - {fileID: 2100000, guid: f4a541773b25b38418a3d5cc1a6e0e1b, type: 2}
   - {fileID: 2100000, guid: fc1bf5cbb70eb7a48b7778aa081f1739, type: 2}
@@ -36453,7 +36451,7 @@ GameObject:
   - component: {fileID: 2043881646}
   m_Layer: 0
   m_Name: LightFloor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
