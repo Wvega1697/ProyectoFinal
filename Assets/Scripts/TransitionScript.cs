@@ -41,4 +41,9 @@ public class TransitionScript : MonoBehaviour
         wolfSprite.SetActive(false);
         SceneManager.LoadScene(levelIndex);
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }

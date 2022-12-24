@@ -28,9 +28,9 @@ public class WolfScript : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.instance.live)
+        if (GameManager.instance.live && !GameManager.instance.pause)
         {
-            JumpLogic();
+            if(!GameManager.instance.hurt) JumpLogic();
             if (!jump) MoveLogic();
             if (!music.isPlaying && inmortalTimer <= 0) music.Play();
         }
@@ -48,16 +48,11 @@ public class WolfScript : MonoBehaviour
         {
             grass.GetComponent<ParticleSystem>().Stop();
             respawnTimer -= Time.deltaTime;
-            ReintentarImage.SetActive(true);
         }
         if (Input.GetKeyDown(KeyCode.T))
         {
             Time.timeScale += 0.25f;
             Debug.Log("New time scale: " + Time.timeScale);
-        }
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            audioChick.Play();
         }
         if (inmortalTimer > 0)
         {
@@ -160,7 +155,7 @@ public class WolfScript : MonoBehaviour
     
     void OnTriggerEnter(Collider col)
     {
-        if(col.transform.gameObject.CompareTag("Dangerous") &&
+        if((col.transform.gameObject.CompareTag("Dangerous") || col.transform.gameObject.CompareTag("MonsterBody")) &&
             animator.GetBool("Live") &&
             inmortalTimer <= 0)
         {
@@ -202,7 +197,6 @@ public class WolfScript : MonoBehaviour
         music.Play();
         audioJump.Play();
         audioDie.Stop();
-        ReintentarImage.SetActive(false);
         respawnTimer = respawnRestartTimer;
         GameManager.instance.RestartLives();
     }
