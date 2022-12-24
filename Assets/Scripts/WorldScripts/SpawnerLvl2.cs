@@ -4,12 +4,12 @@ using UnityEngine;
 public class SpawnerLvl2 : MonoBehaviour
 {
     //Public
-    public float decorationRestarter = 0.1f, grassRestarter = 0.05f, treesRestarter = 1f, rocksRestarter = 2f;
+    public float decorationRestarter = 0.1f, grassRestarter = 0.05f, treesRestarter = 1f, rocksRestarter = 2f, monsterRestarter = 1.3f;
     public List<Transform> lanesTransforms = new List<Transform>();
     public List<Transform> treesTransforms = new List<Transform>();
     public Transform grassTransform, dangerousTransform, treesTransform, decorationTransform, chickTransform;
     //Private
-    float grassTimer, decorationTimer, treesTimer, rocksTimer, chickTimer;
+    float grassTimer, decorationTimer, treesTimer, rocksTimer, chickTimer, monsterTimer;
 
     private void Start()
     {
@@ -17,12 +17,13 @@ public class SpawnerLvl2 : MonoBehaviour
         treesTimer = treesRestarter;
         rocksTimer = rocksRestarter;
         grassTimer = grassRestarter;
+        monsterTimer = monsterRestarter;
         chickTimer = 5;
     }
 
     private void Update()
     {
-        if (GameManager.instance.live)
+        if (GameManager.instance.live && !GameManager.instance.pause)
         {
             if (grassTimer > 0)
             {
@@ -60,8 +61,21 @@ public class SpawnerLvl2 : MonoBehaviour
             {
                 rocksTimer = rocksRestarter;
                 SpawnerLogic("Rock");
-                SpawnerLogic("Rock");
-                SpawnerLogic("Special Rock");
+                if (Random.value > 0.7) SpawnerLogic("Special Rock");
+                else
+                {
+                    SpawnerLogic("Rock");
+                    SpawnerLogic("Score");
+                }
+            }
+            if (monsterTimer > 0)
+            {
+                monsterTimer -= Time.deltaTime;
+            }
+            else
+            {
+                monsterTimer = monsterRestarter;
+                SpawnerLogic("Monster");
             }
             if (chickTimer > 0)
             {
@@ -88,6 +102,9 @@ public class SpawnerLvl2 : MonoBehaviour
                 clone2.transform.position += treesTransforms[Random.Range(3, treesTransforms.Count - 1)].position;
                 break;
             case "Rock":
+                clone.transform.position += lanesTransforms[Random.Range(0, lanesTransforms.Count)].position;
+                break;
+            case "Monster":
                 clone.transform.position += lanesTransforms[Random.Range(0, lanesTransforms.Count)].position;
                 break;
             case "Toon Chick":

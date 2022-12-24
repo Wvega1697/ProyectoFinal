@@ -22,7 +22,7 @@ public class SpawnerLvl1 : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.instance.live)
+        if (GameManager.instance.live && !GameManager.instance.pause)
         {
             if (grassTimer > 0)
             {
@@ -61,7 +61,11 @@ public class SpawnerLvl1 : MonoBehaviour
                 rocksTimer = rocksRestarter;
                 SpawnerLogic("Rock");
                 if(Random.value > 0.5f) SpawnerLogic("Special Rock");
-                else SpawnerLogic("Rock");
+                else
+                {
+                    SpawnerLogic("Rock");
+                    SpawnerLogic("Score");
+                }
             }
             if (chickTimer > 0)
             {

@@ -23,7 +23,8 @@ public class ObjectPool : MonoBehaviour
 
     private void Start()
     {
-        int instances = newInstance.name.Equals("Toon Chick") ? 1 : 5;
+        string _name = newInstance.name;
+        int instances = (_name.Equals("Toon Chick") || _name.Contains("Boss")) ? 1 : 5;
         for (int i = 0; i < instances; i++)
         {
             GameObject clone = Instantiate(newInstance);

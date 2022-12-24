@@ -4,26 +4,25 @@ using UnityEngine;
 public class SpawnerLvl3 : MonoBehaviour
 {
     //Public
-    public float decorationRestarter = 0.1f, grassRestarter = 0.05f, treesRestarter = 1f, rocksRestarter = 1f;
+    public float decorationRestarter = 0.1f, grassRestarter = 0.05f, rocksRestarter = 1f, bossRestarter = 10f;
     public int chickMin, chickMax;
     public List<Transform> lanesTransforms = new List<Transform>();
-    public List<Transform> treesTransforms = new List<Transform>();
     public Transform grassTransform, dangerousTransform, treesTransform, decorationTransform, chickTransform;
     //Private
-    float grassTimer, decorationTimer, treesTimer, rocksTimer, chickTimer;
+    float grassTimer, decorationTimer, rocksTimer, chickTimer, bossTimer;
 
     private void Start()
     {
         decorationTimer = decorationRestarter;
-        treesTimer = treesRestarter;
         rocksTimer = rocksRestarter;
         grassTimer = grassRestarter;
         chickTimer = Random.Range(chickMin, chickMax);
+        bossTimer = Random.Range(bossRestarter, bossRestarter*3); ;
     }
 
     private void Update()
     {
-        if (GameManager.instance.live)
+        if (GameManager.instance.live && !GameManager.instance.pause)
         {
             if (grassTimer > 0)
             {
@@ -43,15 +42,6 @@ public class SpawnerLvl3 : MonoBehaviour
             {
                 decorationTimer = decorationRestarter;
                 SpawnerLogic("Decoration");
-            }
-            if (treesTimer > 0)
-            {
-                treesTimer -= Time.deltaTime;
-            }
-            else
-            {
-                treesTimer = treesRestarter;
-                SpawnerLogic("Tree");
             }
             if (rocksTimer > 0)
             {
@@ -73,6 +63,16 @@ public class SpawnerLvl3 : MonoBehaviour
                 chickTimer = Random.Range(chickMin, chickMax);
                 SpawnerLogic("Toon Chick");
             }
+            if (bossTimer > 0)
+            {
+                bossTimer -= Time.deltaTime;
+            }
+            else
+            {
+                bossTimer = Random.Range(bossRestarter, bossRestarter * 1.5f) * Time.timeScale;
+                WolfLevel3Script.instance.BossSounds(true);
+                SpawnerLogic("Boss");
+            }
         }
         if (gameObject.transform.position.z < 21) gameObject.transform.position += new Vector3(0, 0, (5f * Time.deltaTime));
     }
@@ -83,13 +83,12 @@ public class SpawnerLvl3 : MonoBehaviour
         if ("Special Rock".Equals(type)) type = "Rock";
         switch (type)
         {
-            case "Tree":
-                clone.transform.position += treesTransforms[Random.Range(1, 3)].position;
-                GameObject clone2 = PoolManager.instance.GetInstance(type);
-                clone2.transform.position += treesTransforms[Random.Range(3, treesTransforms.Count - 1)].position;
-                break;
             case "Rock":
                 clone.transform.position += lanesTransforms[Random.Range(0, lanesTransforms.Count)].position;
+                break;
+            case "Boss":
+                clone.transform.position += lanesTransforms[Random.Range(0, lanesTransforms.Count)].position;
+                clone.transform.position = new Vector3(Random.Range(-2f, 2f), clone.transform.position.y, clone.transform.position.z);
                 break;
             case "Toon Chick":
                 clone.transform.position += lanesTransforms[Random.Range(0, lanesTransforms.Count)].position;
@@ -107,9 +106,6 @@ public class SpawnerLvl3 : MonoBehaviour
         if ("Special Rock".Equals(type)) type = "Rock";
         switch (type)
         {
-            case "Tree":
-                clone.transform.position += treesTransforms[transformId].position;
-                break;
             case "Rock":
                 clone.transform.position += lanesTransforms[transformId].position;
                 break;

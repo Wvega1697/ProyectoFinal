@@ -8,7 +8,7 @@ public class PoolManager : MonoBehaviour
         treesPool = new List<ObjectPool>(),
         rocksPool = new List<ObjectPool>(),
         grassPool = new List<ObjectPool>();
-    public ObjectPool chicksPool = new ObjectPool(), scorePool = new ObjectPool();
+    public ObjectPool chicksPool = new ObjectPool(), scorePool = new ObjectPool(), monsterPool = new ObjectPool(), bossPool = new ObjectPool();
     public List<Material> randomMaterials = new List<Material>();
 
     private void Awake()
@@ -67,6 +67,14 @@ public class PoolManager : MonoBehaviour
         {
             scorePool.instance.StoreInstance(clone);
         }
+        else if (fixedName.Contains("Monster"))
+        {
+            monsterPool.instance.StoreInstance(clone);
+        }
+        else if (fixedName.Contains("Boss"))
+        {
+            bossPool.instance.StoreInstance(clone);
+        }
         else
         {
             foreach (ObjectPool objectPool in decorationPool)
@@ -104,6 +112,14 @@ public class PoolManager : MonoBehaviour
         {
             pool = scorePool.instance;
         }
+        else if ("Boss".Equals(type))
+        {
+            pool = bossPool.instance;
+        }
+        else if ("Monster".Equals(type))
+        {
+            pool = monsterPool.instance;
+        }
         else if ("Toon Chick".Equals(type))
         {
             pool = chicksPool.instance;
@@ -115,7 +131,7 @@ public class PoolManager : MonoBehaviour
         newInstance = pool.GetInstance();
         if (type.Contains("Rock")) newInstance = RandomMaterial(newInstance);
         newInstance.transform.position = pool.fixPosition;
-        if (!"Toon Chick".Equals(type) && !"Hit".Equals(type)) newInstance.transform.Rotate(new Vector3(0, Random.Range(0, 360), 0), Space.Self);
+        if (!"Toon Chick".Equals(type) && !"Hit".Equals(type) && !"Monster".Equals(type) && !"Boss".Equals(type)) newInstance.transform.Rotate(new Vector3(0, Random.Range(0, 360), 0), Space.Self);
         return newInstance;
     }
 
