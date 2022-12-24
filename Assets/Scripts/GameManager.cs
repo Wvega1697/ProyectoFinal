@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using System;
+using UnityEngine.Rendering.PostProcessing;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,10 +16,14 @@ public class GameManager : MonoBehaviour
     public bool pause;
     public GameObject restartImage, pauseImage;
     public int level;
+    public float bloom1, bloom2;
     public Button yes, no;
+    public PostProcessVolume volume;
 
     Animator animator;
     bool pausePosition;
+    Vignette vignette;
+    Bloom bloom;
     //Vector3 cameraPosition = new Vector3(0, 6.05f, -11.72f);
 
     private void Awake()
@@ -45,6 +49,8 @@ public class GameManager : MonoBehaviour
         RestartLives();
         pause = false;
         pausePosition = false;
+        volume.profile.TryGetSettings(out vignette);
+        volume.profile.TryGetSettings(out bloom);
     }
 
     // Update is called once per frame
@@ -102,6 +108,11 @@ public class GameManager : MonoBehaviour
                 pausePosition = false;
             }
         }
+        if (totalLives == 1) vignette.intensity.value = 0.7f;
+        else vignette.intensity.value = 0.62f;
+
+        if (hurt) bloom.intensity.value = bloom2;
+        else bloom.intensity.value = bloom1;
     }
 
     public void noPause()
@@ -120,8 +131,8 @@ public class GameManager : MonoBehaviour
 
     private void ScoreLogic()
     {
-        if (score < 250) Time.timeScale = 1f;
-        if (score >= 250 && score < 500) Time.timeScale = 1.25f;
+        /*if (score < 250) */Time.timeScale = 0.8f;
+        /*if (score >= 250 && score < 500) Time.timeScale = 1.25f;
         if (score >= 500 && score < 750) Time.timeScale = 1.5f;
         if (score >= 750 && score < 1000) Time.timeScale = 1.75f;
         if (score >= 1000 && score < 1300) Time.timeScale = 2f;
@@ -130,7 +141,7 @@ public class GameManager : MonoBehaviour
         if (score >= 1750 && score < 2000) Time.timeScale = 2.75f;
         if (score >= 2000 && score < 2300) Time.timeScale = 3f;
         if (score >= 2300 && score < 2500) Time.timeScale = 3.25f;
-        if (score >= 2500) Time.timeScale = 3.5f;
+        if (score >= 2500) Time.timeScale = 3.5f;*/
     }
 
     public bool Hurt()

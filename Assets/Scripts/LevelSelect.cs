@@ -39,11 +39,11 @@ public class LevelSelect : MonoBehaviour
     {
         if (position == 2)
         {
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             {
                 position = 1;
             }
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
             {
                 position = 3;
             }
@@ -56,7 +56,7 @@ public class LevelSelect : MonoBehaviour
         }
         if (position == 3)
         {
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             {
                 position = 2;
             }
@@ -69,7 +69,7 @@ public class LevelSelect : MonoBehaviour
         }
         if (position == 1)
         {
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
             {
                 position = 2;
             }

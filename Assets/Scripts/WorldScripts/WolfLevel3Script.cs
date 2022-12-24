@@ -45,14 +45,15 @@ public class WolfLevel3Script : MonoBehaviour
         {
             if (!GameManager.instance.hurt) JumpLogic();
             MoveLogic();
-            starB.SetActive(false);
             if (inmortalTimer > 0)
             {
                 SetPosition();
                 inmortalTimer -= Time.deltaTime;
+                destroyer2.transform.localScale = new Vector3(4.5f, 3f, 25f);
             }
             else
             {
+                starB.SetActive(false);
                 if (!music.isPlaying) music.Play();
                 GameManager.instance.hurt = false;
                 destroyer2.transform.localScale = new Vector3(4.5f, 3f, 5f);
