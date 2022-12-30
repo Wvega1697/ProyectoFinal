@@ -77,7 +77,7 @@ public class SpawnerLvl2 : MonoBehaviour
             else
             {
                 monsterTimer = monsterRestarter;
-                SpawnerLogic("Monster");
+                if (Random.value > 0.5) SpawnerLogic("Monster");
             }
             if (chickTimer > 0)
             {

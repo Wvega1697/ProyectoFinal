@@ -51,7 +51,7 @@ public class SpawnerLvl3 : MonoBehaviour
             {
                 rocksTimer = rocksRestarter;
                 SpawnerLogic("Rock");
-                SpawnerLogic("Rock");
+                if (Random.value < 0.6) SpawnerLogic("Rock");
                 SpawnerLogic("Score");
             }
             if (chickTimer > 0)

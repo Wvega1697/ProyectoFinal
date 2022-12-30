@@ -5,7 +5,6 @@ public class WolfScript : MonoBehaviour
     //Private
     Animator animator;
     bool jump = false;
-    float jumpTimer = 0, jumpRestartTimer = 0.9f;
     float respawnTimer = 0, respawnRestartTimer = 3f;
     float inmortalTimer = 0, inmortalRestartTimer = 0.3f;
     bool dodge = false;
@@ -124,28 +123,37 @@ public class WolfScript : MonoBehaviour
 
     void JumpLogic()
     {
-        if(jumpTimer <= 0)
+        jump = !IsTouchingGround();
+        if (!jump)
         {
-            jump = false;
-            trail.emitting = true;
-            grass.GetComponent<ParticleSystem>().Stop();
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
             {
-                jump = true;
-                jumpTimer = jumpRestartTimer;
-                audioJump.Play();
-                trail.emitting = false;
+                if (!audioJump.isPlaying) audioJump.Play();
                 grass.GetComponent<ParticleSystem>().Play();
+                animator.SetBool("Jump", true);
             }
-            animator.SetBool("Jump", jump);
-            _magic.SetActive(!jump);
         }
-        else 
+        else
         {
-            jumpTimer -= Time.deltaTime;
+            grass.GetComponent<ParticleSystem>().Stop();
+            animator.SetBool("Jump", false);
+        }
+        trail.emitting = !jump;
+        _magic.SetActive(!jump);
+    }
+
+    bool IsTouchingGround()
+    {
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out RaycastHit hitInfo, 0.15f))
+        {
+            return hitInfo.collider.gameObject.CompareTag("Floor");
+        }
+        else
+        {
+            return false;
         }
     }
-    
+
     void OnTriggerEnter(Collider col)
     {
         if((col.transform.gameObject.CompareTag("Dangerous") || col.transform.gameObject.CompareTag("MonsterBody")) &&

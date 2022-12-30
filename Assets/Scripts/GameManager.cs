@@ -132,17 +132,17 @@ public class GameManager : MonoBehaviour
     {
         if (level == 3)
         {
-            if (score < 250) Time.timeScale = 0.8f;
-            if (score >= 250 && score < 500) Time.timeScale = 1f;
-            if (score >= 500 && score < 750) Time.timeScale = 1.25f;
-            if (score >= 750 && score < 1000) Time.timeScale = 1.5f;
-            if (score >= 1000 && score < 1300) Time.timeScale = 1.75f;
+            if (score < 250) Time.timeScale = 1f;
+            if (score >= 250 && score < 500) Time.timeScale = 1.20f;
+            if (score >= 500 && score < 750) Time.timeScale = 1.40f;
+            if (score >= 750 && score < 1000) Time.timeScale = 1.60f;
+            if (score >= 1000 && score < 1300) Time.timeScale = 1.80f;
             if (score >= 1300 && score < 1500) Time.timeScale = 2f;
-            if (score >= 1500 && score < 1750) Time.timeScale = 2.25f;
-            if (score >= 1750 && score < 2000) Time.timeScale = 2.5f;
-            if (score >= 2000 && score < 2300) Time.timeScale = 2.75f;
-            if (score >= 2300 && score < 2500) Time.timeScale = 3f;
-            if (score >= 2500) Time.timeScale = 3.15f;
+            if (score >= 1500 && score < 1750) Time.timeScale = 2.20f;
+            if (score >= 1750 && score < 2000) Time.timeScale = 2.40f;
+            if (score >= 2000 && score < 2300) Time.timeScale = 2.60f;
+            if (score >= 2300 && score < 2500) Time.timeScale = 2.80f;
+            if (score >= 2500) Time.timeScale = 3f;
         }
         else
         {
