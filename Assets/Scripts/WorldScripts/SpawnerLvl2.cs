@@ -4,7 +4,7 @@ using UnityEngine;
 public class SpawnerLvl2 : MonoBehaviour
 {
     //Public
-    public float decorationRestarter = 0.1f, grassRestarter = 0.05f, treesRestarter = 1f, rocksRestarter = 2f, monsterRestarter = 1.3f;
+    public float decorationRestarter = 0.1f, grassRestarter = 0.05f, treesRestarter = 1f, rocksRestarter = 2f, monsterRestarter = 5f;
     public List<Transform> lanesTransforms = new List<Transform>();
     public List<Transform> treesTransforms = new List<Transform>();
     public Transform grassTransform, dangerousTransform, treesTransform, decorationTransform, chickTransform;
@@ -61,12 +61,14 @@ public class SpawnerLvl2 : MonoBehaviour
             {
                 rocksTimer = rocksRestarter;
                 SpawnerLogic("Rock");
-                if (Random.value > 0.7) SpawnerLogic("Special Rock");
+                SpawnerLogic("Rock");
+                SpawnerLogic("Score");
+                /*if (Random.value > 0.7) SpawnerLogic("Special Rock");
                 else
                 {
                     SpawnerLogic("Rock");
                     SpawnerLogic("Score");
-                }
+                }*/
             }
             if (monsterTimer > 0)
             {

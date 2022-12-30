@@ -41,7 +41,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         score = 0;
-        //scoreTimer = 6f;
         animator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
         live = true;
         hurt = false;
@@ -131,17 +130,34 @@ public class GameManager : MonoBehaviour
 
     private void ScoreLogic()
     {
-        /*if (score < 250) */Time.timeScale = 0.8f;
-        /*if (score >= 250 && score < 500) Time.timeScale = 1.25f;
-        if (score >= 500 && score < 750) Time.timeScale = 1.5f;
-        if (score >= 750 && score < 1000) Time.timeScale = 1.75f;
-        if (score >= 1000 && score < 1300) Time.timeScale = 2f;
-        if (score >= 1300 && score < 1500) Time.timeScale = 2.25f;
-        if (score >= 1500 && score < 1750) Time.timeScale = 2.5f;
-        if (score >= 1750 && score < 2000) Time.timeScale = 2.75f;
-        if (score >= 2000 && score < 2300) Time.timeScale = 3f;
-        if (score >= 2300 && score < 2500) Time.timeScale = 3.25f;
-        if (score >= 2500) Time.timeScale = 3.5f;*/
+        if (level == 3)
+        {
+            if (score < 250) Time.timeScale = 0.8f;
+            if (score >= 250 && score < 500) Time.timeScale = 1f;
+            if (score >= 500 && score < 750) Time.timeScale = 1.25f;
+            if (score >= 750 && score < 1000) Time.timeScale = 1.5f;
+            if (score >= 1000 && score < 1300) Time.timeScale = 1.75f;
+            if (score >= 1300 && score < 1500) Time.timeScale = 2f;
+            if (score >= 1500 && score < 1750) Time.timeScale = 2.25f;
+            if (score >= 1750 && score < 2000) Time.timeScale = 2.5f;
+            if (score >= 2000 && score < 2300) Time.timeScale = 2.75f;
+            if (score >= 2300 && score < 2500) Time.timeScale = 3f;
+            if (score >= 2500) Time.timeScale = 3.15f;
+        }
+        else
+        {
+            if (score < 250) Time.timeScale = 1.1f;
+            if (score >= 250 && score < 500) Time.timeScale = 1.25f;
+            if (score >= 500 && score < 750) Time.timeScale = 1.5f;
+            if (score >= 750 && score < 1000) Time.timeScale = 1.75f;
+            if (score >= 1000 && score < 1300) Time.timeScale = 2f;
+            if (score >= 1300 && score < 1500) Time.timeScale = 2.25f;
+            if (score >= 1500 && score < 1750) Time.timeScale = 2.5f;
+            if (score >= 1750 && score < 2000) Time.timeScale = 2.75f;
+            if (score >= 2000 && score < 2300) Time.timeScale = 3f;
+            if (score >= 2300 && score < 2500) Time.timeScale = 3.25f;
+            if (score >= 2500) Time.timeScale = 3.5f;
+        }
     }
 
     public bool Hurt()

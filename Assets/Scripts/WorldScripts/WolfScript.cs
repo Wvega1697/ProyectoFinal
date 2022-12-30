@@ -42,17 +42,20 @@ public class WolfScript : MonoBehaviour
                 inmortalTimer = inmortalRestartTimer;
                 RespawnLogic();
             }
+            animator.SetBool("Jump", false);
         }
         else
         {
             grass.GetComponent<ParticleSystem>().Stop();
             respawnTimer -= Time.deltaTime;
+            jump = false;
+            animator.SetBool("Jump", false);
         }
-        if (Input.GetKeyDown(KeyCode.T))
+        /*if (Input.GetKeyDown(KeyCode.T))
         {
             Time.timeScale += 0.25f;
             Debug.Log("New time scale: " + Time.timeScale);
-        }
+        }*/
         if (inmortalTimer > 0)
         {
             SetPosition();
@@ -63,11 +66,11 @@ public class WolfScript : MonoBehaviour
             GameManager.instance.hurt = false;
             starB.SetActive(false);
         }
-        if (Input.GetKeyDown(KeyCode.L))
+        /*if (Input.GetKeyDown(KeyCode.L))
         {
             GameManager.instance.totalLives += 1;
             Debug.Log("Lives: " + GameManager.instance.totalLives);
-        }
+        }*/
     }
 
     void MoveLogic()

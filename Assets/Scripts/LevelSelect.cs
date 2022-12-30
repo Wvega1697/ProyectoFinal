@@ -9,6 +9,7 @@ public class LevelSelect : MonoBehaviour
     public Animator selector1;
     public Animator selector2;
     public Animator selector3;
+    public AudioSource audioMove;
 
     int position;
 
@@ -41,10 +42,12 @@ public class LevelSelect : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             {
+                audioMove.Play();
                 position = 1;
             }
             if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
             {
+                audioMove.Play();
                 position = 3;
             }
             lobo1.SetBool("Selected", false);
@@ -58,6 +61,7 @@ public class LevelSelect : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             {
+                audioMove.Play();
                 position = 2;
             }
             lobo1.SetBool("Selected", false);
@@ -71,6 +75,7 @@ public class LevelSelect : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
             {
+                audioMove.Play();
                 position = 2;
             }
             lobo1.SetBool("Selected", true);
