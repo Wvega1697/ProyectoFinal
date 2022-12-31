@@ -11,6 +11,7 @@ TagManager:
   - Scale
   - Grass
   - Chick
+  - Floor
   - MonsterObject
   - MonsterBody
   - Boss

@@ -11,9 +11,9 @@ public class WolfScript : MonoBehaviour
     //Public
     public Rigidbody rb;
     public int pos;
-    public Vector3 _position  = new Vector3(-0.1f, 0.61f, -1.5f);
-    public AudioSource audioMove, audioJump, music, audioDie, audioHurt, audioChick, audioScore, audioBark;
-    public GameObject _magic, starB, heart1, heart2, grass, chick1, chick2, chick3;
+    public Vector3 _position = new Vector3(-0.1f, 0.61f, -1.5f);
+    public AudioSource audioMove, audioJump, music, audioDie, audioHurt, audioChick, audioScore, audioBark, audioDoubleBark;
+    public GameObject ReintentarImage, _magic, starB, heart1, heart2, grass, chick1, chick2, chick3;
     public TrailRenderer trail;
     void Start()
     {
@@ -34,7 +34,7 @@ public class WolfScript : MonoBehaviour
         }
         else if (respawnTimer <= 0)
         {
-            if(Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.R))
             {
                 heart1.GetComponent<ParticleSystem>().Play();
                 heart2.GetComponent<ParticleSystem>().Play();
@@ -76,7 +76,7 @@ public class WolfScript : MonoBehaviour
     {
         if (pos > -1)
         {
-            if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             {
                 pos -= 1;
                 dodge = true;//animator.SetBool("DodgeLeft", dodge);dodgeTimer = dodgeRestartTimer;
@@ -86,7 +86,7 @@ public class WolfScript : MonoBehaviour
 
         if (pos < 1)
         {
-            if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
             {
                 pos += 1;
                 dodge = true;//animator.SetBool("DodgeRight", dodge); dodgeTimer = dodgeRestartTimer;
@@ -97,7 +97,7 @@ public class WolfScript : MonoBehaviour
         if (pos < -1) pos = -1;
         if (pos > 1) pos = 1;
 
-        if(dodge)
+        if (dodge)
         {
             SetPosition();
         }
@@ -128,7 +128,7 @@ public class WolfScript : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
             {
-                if (!audioJump.isPlaying) audioJump.Play();
+                if(!audioJump.isPlaying) audioJump.Play();
                 grass.GetComponent<ParticleSystem>().Play();
                 animator.SetBool("Jump", true);
             }
