@@ -5,8 +5,6 @@ public class WolfScript : MonoBehaviour
     //Private
     Animator animator;
     bool jump = false;
-    //float jumpTimer = 0, jumpRestartTimer = 0.7f;
-    int audioJumpInt = 1;
     float respawnTimer = 0, respawnRestartTimer = 3f;
     float inmortalTimer = 0, inmortalRestartTimer = 0.3f;
     bool dodge = false;
@@ -43,17 +41,20 @@ public class WolfScript : MonoBehaviour
                 inmortalTimer = inmortalRestartTimer;
                 RespawnLogic();
             }
+            animator.SetBool("Jump", false);
         }
         else
         {
             grass.GetComponent<ParticleSystem>().Stop();
             respawnTimer -= Time.deltaTime;
+            jump = false;
+            animator.SetBool("Jump", false);
         }
-        if (Input.GetKeyDown(KeyCode.T))
+        /*if (Input.GetKeyDown(KeyCode.T))
         {
             Time.timeScale += 0.25f;
             Debug.Log("New time scale: " + Time.timeScale);
-        }
+        }*/
         if (inmortalTimer > 0)
         {
             SetPosition();
@@ -64,11 +65,11 @@ public class WolfScript : MonoBehaviour
             GameManager.instance.hurt = false;
             starB.SetActive(false);
         }
-        if (Input.GetKeyDown(KeyCode.L))
+        /*if (Input.GetKeyDown(KeyCode.L))
         {
             GameManager.instance.totalLives += 1;
             Debug.Log("Lives: " + GameManager.instance.totalLives);
-        }
+        }*/
     }
 
     void MoveLogic()
@@ -152,7 +153,7 @@ public class WolfScript : MonoBehaviour
             return false;
         }
     }
-    
+
     void OnTriggerEnter(Collider col)
     {
         if((col.transform.gameObject.CompareTag("Dangerous") || col.transform.gameObject.CompareTag("MonsterBody")) &&

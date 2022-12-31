@@ -53,7 +53,7 @@ public class ObjectScript : MonoBehaviour
                 if (gameObject.name.Contains("Rock7") || gameObject.name.Contains("Score"))
                 {
                     if (GameManager.instance.level != 2) GameManager.instance.score += (15 / GameManager.instance.level);
-                    else GameManager.instance.score += 10;
+                    else GameManager.instance.score += 15;
                 }
                 PoolManager.instance.StoreInstance(gameObject);
             }

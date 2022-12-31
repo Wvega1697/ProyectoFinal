@@ -15,6 +15,7 @@ TagManager:
   - MonsterObject
   - MonsterBody
   - Boss
+  - Floor
   layers:
   - Default
   - TransparentFX
